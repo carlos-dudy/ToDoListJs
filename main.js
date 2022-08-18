@@ -9,11 +9,35 @@ addBtn.addEventListener('click', (e) =>{
 
     const text = input.value;
 
-    const li = document.createElement('li')
-    const p = document.createElement('p')
-    p.textContent = text
+    if (text !== ''){
 
-    li.appendChild(p)
-    ul.appendChild(li)
+        const li = document.createElement('li')
+        const p = document.createElement('p')
+        p.textContent = text
+    
+        li.appendChild(p)
+        li.appendChild(addDeleteBtn())
+        ul.appendChild(li)
+    
+    
+        input.value = '';
+        empty.styles.diplay = 'none';
+
+    }
+
 })
 
+function addDeleteBtn (){
+
+    const deleteBtn = document.createElement('button')
+
+    deleteBtn.textContent = 'X';
+    deleteBtn.className = 'btn-delete'
+
+    deleteBtn.addEventListener('click', (e) =>{
+        const item = e.target.parentElement;
+        ul.removeChild(item)
+    });
+
+    return deleteBtn;
+}
